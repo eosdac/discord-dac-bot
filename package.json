@@ -1,0 +1,15 @@
+{
+  "name": "discord-dac-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/eosdac/discord-dac-bot.git",
+  "author": "<kasperkasperfish@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "discord.js": "^11.4.2",
+    "eosjs": "^20.0.0-beta3",
+    "mongodb": "^3.1.12",
+    "node-fetch": "^2.3.0"
+  }
+}
