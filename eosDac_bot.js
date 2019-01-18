@@ -16,6 +16,7 @@ const ecc = require('eosjs-ecc');
 var fs = require('fs');
 
 class EosDacBot{
+    
     constructor(config){
         this.config = config;
         this.client = new Discord.Client();
@@ -41,6 +42,7 @@ class EosDacBot{
             this.commands.push(cmd_obj);
         });
     }
+
     loadEvents(){
         let files = fs.readdirSync('./events');
         files = files.filter(f => /\.js$/.test(f) );
