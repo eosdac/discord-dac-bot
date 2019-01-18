@@ -29,6 +29,7 @@ class EosDacBot{
         if(!this.db){
             this.db = await this.connectDb();
         }
+        this.eos = eos;
         this.client.login(this.config.bot.token)
 
     }

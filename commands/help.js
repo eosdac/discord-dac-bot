@@ -1,22 +1,31 @@
-const {Base_Command} = require('../abstract/Base_Command');
+const {Base_Command} = require('../classes/abstract/Base_Command');
 
 class help extends Base_Command{
+
     constructor(){
-        super();
-        this.name ='help';
-        this.description = 'Lists help for all available commands';
+        super('help', 'Lists help for all available commands');
     }
 
     execute(bot, member, message, args){
         let c = bot.getCommand(args[0]);
 
         if(c) {
-            // let emb = this.embed.setColor('#00AE86')
-            // .addField(args[0], c.description )
-            message.author.send(c.description);
+            let embed = new this.embed();
+            embed.setColor('#00AE86')
+            .addField(bot.config.bot.prefix+args[0], c.description );
+
+            message.author.send(embed);
         }
         else{
             //list help for all commands
+            let embed = new this.embed();
+            embed.setColor('#00AE86');
+
+            bot.commands.forEach(c => {
+                embed.addField(bot.config.bot.prefix+c.name, c.description);
+            });
+
+            message.author.send(embed);
         }
         
     }
