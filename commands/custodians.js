@@ -3,7 +3,7 @@ const {Base_Command} = require('../classes/abstract/Base_Command');
 class cmd extends Base_Command{
 
     constructor(){
-        super('custodians', 'List the current custodian board');
+        super('custodians', 'List the current custodian board.');
     }
 
     async execute(bot, member, message, args){

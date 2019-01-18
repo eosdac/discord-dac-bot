@@ -3,7 +3,7 @@ const {Base_Command} = require('../classes/abstract/Base_Command');
 class help extends Base_Command{
 
     constructor(){
-        super('help', 'Show help for all available commands');
+        super('help', 'Show help for all available commands.');
     }
 
     async execute(bot, member, message, args){

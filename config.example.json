@@ -1,0 +1,33 @@
+{ 
+    "bot": {
+      "guildname": "eosdac bot test",
+      "token"  : "your bot token here",
+      "prefix" : "$",
+      "commands" : "./commands"
+    },
+  
+    "chain": {
+      "chainId": "e70aaab8997e1dfce58fbfac80cbbb8fecec7b99cf982a9444273cbc64c41473",
+      "httpEndpoint": "http://junglehistory.cryptolions.io",
+      "historyEndpoint": "http://junglehistory.cryptolions.io"
+    },
+  
+    "mongo":{
+      "url": "mongodb://localhost:27017/",
+      "dbname": "eosdac"
+    },
+  
+    "dac":{
+      "memberclient": "http://members-dev.eosdac.io",
+      "token":{
+        "symbol": "KASDAC",
+        "contract": "kasdactokens"
+      },
+  
+      "custodian": {
+        "contract": "dacelections"
+      },
+
+      "verification_contract": "piecesnbitss"
+    }
+  }

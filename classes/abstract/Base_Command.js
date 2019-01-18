@@ -21,9 +21,7 @@ class Base_Command {
   
     execute() {
       throw new Error('You need to implement an execute() function');
-    }
-
-  
+    } 
 }
 
 module.exports = {
