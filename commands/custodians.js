@@ -1,8 +1,8 @@
 const {Base_Command} = require('../classes/abstract/Base_Command');
 
-class test extends Base_Command{
+class cmd extends Base_Command{
     constructor(){
-        super('custodians', 'Lists the current custodian board');
+        super('custodians', 'List the current custodian board');
     }
 
     async execute(bot, member, message, args){
@@ -20,4 +20,4 @@ class test extends Base_Command{
     }
 }
 
-module.exports = test;
+module.exports = cmd;

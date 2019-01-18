@@ -13,6 +13,7 @@ class Base_Command {
       this.name = name;
       this.description = description;
       this.embed = require("discord.js").RichEmbed;
+      this.parameters = '';
 
       console.log(`Command ${this.name} loaded.`);
     }

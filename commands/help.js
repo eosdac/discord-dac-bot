@@ -3,7 +3,7 @@ const {Base_Command} = require('../classes/abstract/Base_Command');
 class help extends Base_Command{
 
     constructor(){
-        super('help', 'Lists help for all available commands');
+        super('help', 'Show help for all available commands');
     }
 
     async execute(bot, member, message, args){
@@ -22,7 +22,7 @@ class help extends Base_Command{
             embed.setColor('#00AE86');
 
             bot.commands.forEach(c => {
-                embed.addField(bot.config.bot.prefix+c.name, c.description);
+                embed.addField(bot.config.bot.prefix+c.name+' '+c.parameters, c.description);
             });
 
             message.author.send(embed);
