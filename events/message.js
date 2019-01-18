@@ -12,7 +12,10 @@ module.exports = async (bot, message) => {
     const cmd_obj = bot.getCommand(command);
 
     if(cmd_obj){
-        cmd_obj.execute(bot, member, message, args)
+        bot.client.user.setActivity(`working for @${message.author.username}`);
+        cmd_obj.execute(bot, member, message, args);
+        setTimeout(()=>{bot.client.user.setActivity(`Serving ${bot.config.dac.name}`) }, 1000)
+        ;
     }
     else{
         message.author.send(`The command ${command} does not exist`);
