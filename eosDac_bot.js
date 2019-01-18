@@ -3,15 +3,16 @@ const axios = require('axios');
 const MongoClient = require('mongodb').MongoClient;
 
 const Discord = require("discord.js");
-const client = new Discord.Client();
 
-const { Api, JsonRpc, Serialize } = require('eosjs');
-const { TextDecoder, TextEncoder } = require('text-encoding');
-const fetch = require('node-fetch');
-const chainid = config.chain.chainId;
-const rpc = new JsonRpc(config.chain.httpEndpoint, { fetch });
-const eos = new Api({rpc, chainid, textDecoder: new TextDecoder(), textEncoder: new TextEncoder(), Serialize} );
-const ecc = require('eosjs-ecc');
+
+// const { Api, JsonRpc, Serialize } = require('eosjs');
+// const { TextDecoder, TextEncoder } = require('text-encoding');
+// const fetch = require('node-fetch');
+// const chainid = config.chain.chainId;
+// const rpc = new JsonRpc(config.chain.httpEndpoint, { fetch });
+// const eos = new Api({rpc, chainid, textDecoder: new TextDecoder(), textEncoder: new TextEncoder(), Serialize} );
+
+// const ecc = require('eosjs-ecc');
 
 var fs = require('fs');
 
@@ -29,8 +30,7 @@ class EosDacBot{
         if(!this.db){
             this.db = await this.connectDb();
         }
-        this.eos = eos;
-        this.client.login(this.config.bot.token)
+        this.client.login(this.config.bot.token);
 
     }
 
@@ -63,11 +63,11 @@ class EosDacBot{
         return await MongoClient.connect(this.config.mongo.url, { useNewUrlParser: true })
         .then(mongo => {
             console.log('mongo connected');
-            let db = mongo.db(config.mongo.dbname);
+            let db = mongo.db(this.config.mongo.dbname);
             return db;
         })
         .catch(e => {console.log(e); return false;} );
     }
 }
 
-let test = new EosDacBot(config)
+let test = new EosDacBot(config);
