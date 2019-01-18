@@ -19,6 +19,7 @@
     },
   
     "dac":{
+      "name": "eosDAC",
       "memberclient": "http://members-dev.eosdac.io",
       "token":{
         "symbol": "KASDAC",
