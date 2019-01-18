@@ -7,6 +7,7 @@ class help extends Base_Command{
     }
 
     async execute(bot, member, message, args){
+
         let c = bot.getCommand(args[0]);
 
         if(c) {
@@ -26,8 +27,7 @@ class help extends Base_Command{
             });
 
             message.author.send(embed);
-        }
-        
+        } 
     }
 }
 

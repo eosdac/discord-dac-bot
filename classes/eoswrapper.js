@@ -39,6 +39,7 @@ class EosWrapper {
             table: 'members',
             limit: 1
         }).catch(e=> false);
+
         if(res && res.rows[0].sender === accountname){
             return res.rows[0];
         }
@@ -115,7 +116,6 @@ class EosWrapper {
             return false;
         }
     }
-
 }
 
 module.exports = EosWrapper;

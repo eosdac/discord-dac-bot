@@ -2,6 +2,7 @@ const {Base_Command} = require('../classes/abstract/Base_Command');
 const ecc = require('eosjs-ecc');
 
 class cmd extends Base_Command{
+    
     constructor(){
         super('pair', 'Link an eos account with your discord account.');
         this.parameters = '<accountname>';

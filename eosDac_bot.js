@@ -31,7 +31,6 @@ class EosDacBot{
             this.db = await this.connectDb();
         }
         this.client.login(this.config.bot.token);
-
     }
 
     loadCommands(){

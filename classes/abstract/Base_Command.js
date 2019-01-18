@@ -6,15 +6,16 @@ class Base_Command {
       if (this.constructor == Base_Command) {
         throw new Error("Can't initiate an abstract class! Please extend this base class.");
       }
+
       if(!name || !description){
-        throw new Error('You need to pass a command name and description in the constructor.')
+        throw new Error('You need to pass a command name and description in the constructor.');
       }
+
       this.eos = new eoswrapper();
       this.name = name;
       this.description = description;
       this.embed = require("discord.js").RichEmbed;
       this.parameters = '';
-
       console.log(`Command ${this.name} loaded.`);
     }
   
