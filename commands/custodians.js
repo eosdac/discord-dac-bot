@@ -5,8 +5,18 @@ class test extends Base_Command{
         super('custodians', 'Lists the current custodian board');
     }
 
-    execute(bot, message, user, member){
-        console.log(this.name)
+    async execute(bot, member, message, args){
+        let custodians = await this.eos.getCustodians();
+        if(custodians){
+            let embed = new this.embed()
+            .setColor('#00AE86')
+            .addField(`Current Custodians (${custodians.length})`, custodians.map(c=>`[${c.cust_name}](${bot.config.dac.memberclient}/profile/${c.cust_name})`) );
+     
+            message.author.send(embed);
+          }
+          else{
+            message.author.send('I could not find custodians.')
+          }
     }
 }
 

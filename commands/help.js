@@ -6,7 +6,7 @@ class help extends Base_Command{
         super('help', 'Lists help for all available commands');
     }
 
-    execute(bot, member, message, args){
+    async execute(bot, member, message, args){
         let c = bot.getCommand(args[0]);
 
         if(c) {
