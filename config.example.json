@@ -3,7 +3,8 @@
       "guildname": "eosdac bot test",
       "token"  : "your bot token here",
       "prefix" : "$",
-      "commands" : "./commands"
+      "commands" : "./commands",
+      "events": "./events"
     },
   
     "chain": {

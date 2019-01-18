@@ -44,7 +44,7 @@ class EosDacBot{
     }
 
     loadEvents(){
-        let files = fs.readdirSync('./events');
+        let files = fs.readdirSync(this.config.bot.events);
         files = files.filter(f => /\.js$/.test(f) );
         files.forEach(f => {
             console.log(`./events/${f}`)
