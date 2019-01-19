@@ -49,7 +49,7 @@ class EosDacBot{
         let files = fs.readdirSync(this.config.bot.tasks);
         files = files.filter(f => /\.js$/.test(f) );
         files.forEach(f => {
-            const task  = new (require(`${this.config.bot.tasks}/${f}`) )();
+            const task  = new (require(`${this.config.bot.tasks}/${f}`) )(this);
             this.tasks.push(task);
         });
     }
