@@ -1,11 +1,15 @@
 { 
     "bot": {
       "guildname": "eosdac bot test",
-      "token"  : "your bot token here",
+      "token"  : "your bot token",
       "prefix" : "$",
       "commands" : "./commands",
       "events": "./events",
-      "tasks": "./tasks"
+      "tasks": "./tasks",
+      "api": {
+        "enable": true,
+        "port": 3333
+      }
     },
   
     "chain": {
