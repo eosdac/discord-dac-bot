@@ -16,6 +16,7 @@ class Base_Command {
       this.description = description;
       this.embed = require("discord.js").RichEmbed;
       this.parameters = '';
+      this.required_roles = [];
       console.log(`Command ${this.name} loaded.`);
     }
   

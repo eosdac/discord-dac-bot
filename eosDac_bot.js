@@ -1,20 +1,8 @@
 const config = require("./config.json");
-const axios = require('axios');
+const fs = require('fs');
+const Discord = require("discord.js");
 const MongoClient = require('mongodb').MongoClient;
 
-const Discord = require("discord.js");
-
-
-// const { Api, JsonRpc, Serialize } = require('eosjs');
-// const { TextDecoder, TextEncoder } = require('text-encoding');
-// const fetch = require('node-fetch');
-// const chainid = config.chain.chainId;
-// const rpc = new JsonRpc(config.chain.httpEndpoint, { fetch });
-// const eos = new Api({rpc, chainid, textDecoder: new TextDecoder(), textEncoder: new TextEncoder(), Serialize} );
-
-// const ecc = require('eosjs-ecc');
-
-var fs = require('fs');
 
 class EosDacBot{
     
@@ -65,7 +53,10 @@ class EosDacBot{
             let db = mongo.db(this.config.mongo.dbname);
             return db;
         })
-        .catch(e => {console.log(e); return false;} );
+        .catch(e => {
+            console.log(e); 
+            return false;
+        });
     }
 }
 
