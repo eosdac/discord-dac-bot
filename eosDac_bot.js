@@ -2,6 +2,7 @@ const config = require("./config.json");
 const fs = require('fs');
 const Discord = require("discord.js");
 const MongoClient = require('mongodb').MongoClient;
+const BotApi = require("./classes/botapi.js");
 
 
 class EosDacBot{
@@ -19,7 +20,12 @@ class EosDacBot{
         if(!this.db){
             this.db = await this.connectDb();
         }
+
         this.client.login(this.config.bot.token);
+
+        if(this.config.bot.api.enable){
+            this.botapi = new BotApi(this);
+        }
     }
 
     loadCommands(){

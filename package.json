@@ -9,6 +9,7 @@
     "axios": "^0.18.0",
     "discord.js": "^11.4.2",
     "eosjs": "^20.0.0-beta3",
+    "express": "^4.16.4",
     "mongodb": "^3.1.12",
     "node-fetch": "^2.3.0"
   }
