@@ -15,6 +15,7 @@ class EosDacBot{
     async init(){
         this.loadEvents();
         this.loadCommands();
+        this.loadTasks();
         if(!this.db){
             this.db = await this.connectDb();
         }
@@ -36,9 +37,20 @@ class EosDacBot{
         files = files.filter(f => /\.js$/.test(f) );
         files.forEach(f => {
             console.log(`./events/${f}`)
-            const event = require(`./events/${f}`);
+            const event = require(`${this.config.bot.events}/${f}`);
             let eventName = f.split(".")[0];
             this.client.on(eventName, event.bind(null, this) );
+        });
+    }
+
+    // wip
+    loadTasks(){
+        this.tasks = [];
+        let files = fs.readdirSync(this.config.bot.tasks);
+        files = files.filter(f => /\.js$/.test(f) );
+        files.forEach(f => {
+            const task  = new (require(`${this.config.bot.tasks}/${f}`) )();
+            this.tasks.push(task);
         });
     }
 

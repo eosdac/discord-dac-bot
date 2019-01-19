@@ -4,7 +4,8 @@
       "token"  : "your bot token here",
       "prefix" : "$",
       "commands" : "./commands",
-      "events": "./events"
+      "events": "./events",
+      "tasks": "./tasks"
     },
   
     "chain": {
