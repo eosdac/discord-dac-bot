@@ -8,7 +8,7 @@ const botRouter = function (api, bot) {
     });
 
     api.get("/testapi/:apikey", async function (req, res) {
-        
+
         const apikey = req.params.apikey;
         if(!apikey){
             res.status(400).send({ message: 'No api key supplied.' });

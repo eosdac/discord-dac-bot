@@ -29,10 +29,34 @@ class cmd extends Base_Command{
         }
     
         if(last.act.data.token === discorduser[0].token ){
+            
+            let balance = await this.eos.getBalance(bot.config.dac.token.contract, discorduser[0].eos_account, bot.config.dac.token.symbol);
+            let ismember = await this.eos.isMember(discorduser[0].eos_account);
+
+            let embed = new this.embed();
+            embed.setColor('#00AE86');
+
+            embed.addField('Linked eos Account', `${discorduser[0].eos_account}`);
+
+            if(ismember){
+                embed.addField('Agreed constitution', `v${ismember.agreedtermsversion}`);
+            }
+            else{
+                embed.addField('Signature required', `You need to agree the DAC constitution to be a member.`);
+            }
+
+            if(balance){
+                embed.addField('Balance', `${balance}`)
+            }
+            else{
+                embed.addField(`Balance required`, `You need to have at least 0.0001 ${bot.config.dac.token.symbol} to be an active member.`);
+            }
+
             let guild = bot.client.guilds.find(guild => guild.name === bot.config.bot.guildname);
             let role = guild.roles.find(role => role.name === "Registered Member");
             member.addRole(role).catch(e=>console.error(e) );
-            message.author.send(`I added the "Registered Member" role to your account ${message.author}`);
+            embed.setDescription(`I added the "Registered Member" role to your account ${message.author}`)
+            message.author.send(embed);
         }
         else{
             message.author.send(`Tokens don't match, verification failed. You need to verify your token ${bot.config.dac.memberclient}/test/${discorduser[0].token}`);
