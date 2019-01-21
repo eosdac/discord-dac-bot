@@ -16,7 +16,7 @@ class EosDacBot{
     async init(){
         this.loadEvents();
         this.loadCommands();
-        this.loadTasks();
+        
         if(!this.db){
             this.db = await this.connectDb();
         }
@@ -26,6 +26,7 @@ class EosDacBot{
         if(this.config.bot.api.enable){
             this.botapi = new BotApi(this);
         }
+        this.loadTasks();
     }
 
     loadCommands(){
