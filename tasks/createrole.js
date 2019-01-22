@@ -35,8 +35,6 @@ class task extends Base_Task {
             return false;
         });
     }
-
-
 }
 
 module.exports = task;

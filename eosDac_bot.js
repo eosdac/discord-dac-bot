@@ -3,6 +3,7 @@ const fs = require('fs');
 const Discord = require("discord.js");
 const MongoClient = require('mongodb').MongoClient;
 const BotApi = require("./classes/botapi.js");
+const eoswrapper = require('./classes/eoswrapper.js');
 
 
 class EosDacBot{
@@ -10,6 +11,7 @@ class EosDacBot{
     constructor(config){
         this.config = config;
         this.client = new Discord.Client();
+        this.eos = new eoswrapper();
         this.init();
     }
 
@@ -35,7 +37,10 @@ class EosDacBot{
         files = files.filter(f => /\.js$/.test(f) );
         files.forEach(f => {
             const cmd_obj  = new (require(`${this.config.bot.commands}/${f}`) )();
-            this.commands.push(cmd_obj);
+            if(!cmd_obj.disable){
+                this.commands.push(cmd_obj);
+            }
+            
         });
     }
 
@@ -50,7 +55,6 @@ class EosDacBot{
         });
     }
 
-    // wip
     loadTasks(){
         this.tasks = [];
         let files = fs.readdirSync(this.config.bot.tasks);
@@ -64,6 +68,10 @@ class EosDacBot{
 
     getCommand(cmd_name){
         return this.commands.find(cmd => cmd.name == cmd_name);
+    }
+
+    getTask(task_name){
+        return this.tasks.find(tsk => tsk.name == task_name);
     }
 
     async connectDb(){

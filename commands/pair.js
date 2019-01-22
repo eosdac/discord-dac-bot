@@ -1,4 +1,5 @@
 const {Base_Command} = require('../classes/abstract/Base_Command');
+///////
 const ecc = require('eosjs-ecc');
 
 class cmd extends Base_Command{
@@ -10,7 +11,7 @@ class cmd extends Base_Command{
 
     async execute(bot, member, message, args){
         if(args[0]){
-            let account = await this.eos.getAccount(args[0]);
+            let account = await bot.getAccount(args[0]);
             if(account){
                 let priv = await ecc.randomKey();
                 let pub = ecc.privateToPublic(priv).substring(3);

@@ -4,10 +4,11 @@ class cmd extends Base_Command{
 
     constructor(){
         super('custodians', 'List the current custodian board.');
+        // this.disable = true;
     }
 
     async execute(bot, member, message, args){
-        let custodians = await this.eos.getCustodians();
+        let custodians = await bot.eos.getCustodians();
 
         if(custodians){
             let embed = new this.embed()

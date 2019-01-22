@@ -1,4 +1,3 @@
-const eoswrapper = require('../eoswrapper.js');
 
 class Base_Task {
 
@@ -21,7 +20,7 @@ class Base_Task {
           this.shedule = setInterval(()=>{
               this.execute();
               this.counter = this.counter ? this.counter+1 : 1;
-              console.log(this.counter);
+              console.log(`Executed interval task ${this.name}: ${this.counter}`);
           }, this.interval);
       }   
     }
@@ -41,8 +40,6 @@ class Base_Task {
             this.start();
         }
     }
-
-
 }
 
 module.exports = {

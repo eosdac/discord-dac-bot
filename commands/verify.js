@@ -1,5 +1,4 @@
 const {Base_Command} = require('../classes/abstract/Base_Command');
-const ecc = require('eosjs-ecc');
 
 class cmd extends Base_Command{
 
@@ -17,7 +16,7 @@ class cmd extends Base_Command{
             return;
         }
     
-        let actions = await this.eos.getActions(discorduser[0].eos_account);
+        let actions = await bot.eos.getActions(discorduser[0].eos_account);
 
         let last = actions.find(a => { 
             return a.act.account === bot.config.dac.verification_contract; 
@@ -30,8 +29,8 @@ class cmd extends Base_Command{
     
         if(last.act.data.token === discorduser[0].token ){
             
-            let balance = await this.eos.getBalance(bot.config.dac.token.contract, discorduser[0].eos_account, bot.config.dac.token.symbol);
-            let ismember = await this.eos.isMember(discorduser[0].eos_account);
+            let balance = await bot.eos.getBalance(bot.config.dac.token.contract, discorduser[0].eos_account, bot.config.dac.token.symbol);
+            let ismember = await bot.eos.isMember(discorduser[0].eos_account);
 
             let embed = new this.embed();
             embed.setColor('#00AE86');
