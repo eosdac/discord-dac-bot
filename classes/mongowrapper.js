@@ -10,7 +10,7 @@ class MongoWrapper{
 
     async connect(){
         if(this.db === null){
-            await MongoClient.connect(this.mongourl, { useNewUrlParser: true })
+            return await MongoClient.connect(this.mongourl, { useNewUrlParser: true })
             .then(mongo => {
                 console.log('mongo connected');
                 this.db = mongo.db(this.dbname);
