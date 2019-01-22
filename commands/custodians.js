@@ -4,7 +4,7 @@ class cmd extends Base_Command{
 
     constructor(){
         super('custodians', 'List the current custodian board.');
-        // this.disable = true;
+        this.disable = false;
     }
 
     async execute(bot, member, message, args){

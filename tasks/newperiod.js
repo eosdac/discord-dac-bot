@@ -5,7 +5,7 @@ class task extends Base_Task {
     constructor(bot, taskname){
         //set ms to execute the task at specific interval.
         //when not set or set to zero. the task will not run automatically.
-        var interval = 5000;//ms
+        var interval = 0;//ms
         super(taskname, interval);
         this.bot = bot;
     }
