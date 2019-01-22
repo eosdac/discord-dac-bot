@@ -24,7 +24,6 @@ class MongoWrapper{
         }
         else{
             console.log('mongo already connected');
-            this.db = null;
             return true;
         }
 
