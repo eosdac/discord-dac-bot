@@ -2,11 +2,11 @@ const {Base_Task} = require('../classes/abstract/Base_Task');
 
 class task extends Base_Task {
 
-    constructor(bot){
+    constructor(bot, taskname){
         //set ms to execute the task at specific interval.
         //when not set or set to zero. the task will not run automatically.
-        var interval = 0;//ms
-        super(interval);
+        var interval = 5000;//ms
+        super(taskname, interval);
         this.bot = bot;
     }
 

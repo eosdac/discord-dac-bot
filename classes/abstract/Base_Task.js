@@ -2,13 +2,14 @@ const eoswrapper = require('../eoswrapper.js');
 
 class Base_Task {
 
-    constructor(interval=false) {
-
+    constructor(taskname, interval=false) {
+      
+      this.name = taskname;
       if(interval){
         this.interval = interval;
         this.start();
       }
-      console.log(`Task loaded.`);
+      console.log(`Task ${this.name} loaded.`);
     }
   
     execute() {

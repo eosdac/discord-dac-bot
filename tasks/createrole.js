@@ -2,9 +2,9 @@ const {Base_Task} = require('../classes/abstract/Base_Task');
 
 class task extends Base_Task {
 
-    constructor(bot){
+    constructor(bot, taskname){
 
-        super();
+        super(taskname);
         this.bot = bot;
     }
 
