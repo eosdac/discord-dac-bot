@@ -11,7 +11,7 @@ class help extends Base_Command{
         let c = bot.getCommand(args[0]);
 
         if(c) {
-            let embed = new this.embed();
+            let embed = new bot.embed();
             embed.setColor('#00AE86')
             .addField(bot.config.bot.prefix+args[0], c.description );
 
@@ -19,7 +19,7 @@ class help extends Base_Command{
         }
         else{
             //list help for all commands
-            let embed = new this.embed();
+            let embed = new bot.embed();
             embed.setColor('#00AE86');
 
             bot.commands.forEach(c => {

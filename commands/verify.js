@@ -32,7 +32,7 @@ class cmd extends Base_Command{
             let balance = await bot.eos.getBalance(bot.config.dac.token.contract, discorduser[0].eos_account, bot.config.dac.token.symbol);
             let ismember = await bot.eos.isMember(discorduser[0].eos_account);
 
-            let embed = new this.embed();
+            let embed = new bot.embed();
             embed.setColor('#00AE86');
 
             embed.addField('Linked eos Account', `${discorduser[0].eos_account}`);

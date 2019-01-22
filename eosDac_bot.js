@@ -11,6 +11,7 @@ class EosDacBot{
     constructor(config){
         this.config = config;
         this.client = new Discord.Client();
+        this.embed = require("discord.js").RichEmbed;
         this.eos = new eoswrapper();
         this.init();
     }

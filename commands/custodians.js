@@ -11,7 +11,7 @@ class cmd extends Base_Command{
         let custodians = await bot.eos.getCustodians();
 
         if(custodians){
-            let embed = new this.embed()
+            let embed = new bot.embed()
             .setColor('#00AE86')
             .addField(`Current Custodians (${custodians.length})`, custodians.map(c=>`[${c.cust_name}](${bot.config.dac.memberclient}/profile/${c.cust_name})`) );
      

@@ -14,7 +14,6 @@ class Base_Command {
       this.eos = new eoswrapper();
       this.name = name;
       this.description = description;
-      this.embed = require("discord.js").RichEmbed;
       this.parameters = '';
       this.required_roles = [];
       console.log(`Command ${this.name} loaded.`);
