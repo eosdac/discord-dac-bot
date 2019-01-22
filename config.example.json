@@ -8,7 +8,9 @@
       "tasks": "./tasks",
       "api": {
         "enable": true,
-        "port": 3333
+        "url": "http://localhost",
+        "port": 3333,
+        "enable_cors": true
       }
     },
   

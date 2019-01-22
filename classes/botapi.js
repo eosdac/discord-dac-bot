@@ -10,11 +10,13 @@ class BotApi{
         this.api.use(bodyParser.json());
         this.api.use(bodyParser.urlencoded({ extended: true }));
         
-        this.api.use(function(req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
-        });
+        if(this.bot.config.bot.api.enable_cors){
+            this.api.use(function(req, res, next) {
+                res.header("Access-Control-Allow-Origin", "*");
+                res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                next();
+            });
+        }
 
         routes(this.api, this.bot);
 
@@ -23,7 +25,6 @@ class BotApi{
             this.bot.api_online = true;
         });
     }
-
 }
 
 module.exports = BotApi;

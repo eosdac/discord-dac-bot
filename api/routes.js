@@ -12,7 +12,7 @@ const botRouter = function (api, bot) {
         const apikey = req.params.apikey;
         if(!apikey){
             res.status(400).send({ message: 'No api key supplied.' });
-            return
+            return;
         }
 
         try{
@@ -32,7 +32,6 @@ const botRouter = function (api, bot) {
             res.status(400).send({ message: 'Something went wrong.' });
         }    
     });
-
 }
 
 module.exports = botRouter;
