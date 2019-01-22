@@ -1,7 +1,6 @@
 const config = require("./config.json");
 const fs = require('fs');
 const Discord = require("discord.js");
-const MongoClient = require('mongodb').MongoClient;
 const BotApi = require("./classes/botapi.js");
 const eoswrapper = require('./classes/eoswrapper.js');
 const mongowrapper = require('./classes/mongowrapper.js');
