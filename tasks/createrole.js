@@ -10,7 +10,8 @@ class task extends Base_Task {
 
     async execute(rolename, color='BLUE'){
         if(!rolename || !color){
-            console.log('Rolename and color required!')
+            console.log('Rolename and color required!');
+            return false;
         }
         let newrole = 'Registered Member';
 
@@ -25,8 +26,14 @@ class task extends Base_Task {
             name: newrole,
             color: color,
         })
-        .then(role => console.log(`Created new role with name ${role.name} and color ${role.color}`))
-        .catch(console.error);
+        .then(role => {
+            console.log(`Created new role with name ${role.name} and color ${role.color}`);
+            return true;
+        })
+        .catch(e=>{
+            console.error(e);
+            return false;
+        });
     }
 
 
