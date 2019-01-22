@@ -1,4 +1,3 @@
-const eoswrapper = require('../eoswrapper.js');
 
 class Base_Command {
 
@@ -11,7 +10,6 @@ class Base_Command {
         throw new Error('You need to pass a command name and description in the constructor.');
       }
 
-      this.eos = new eoswrapper();
       this.name = name;
       this.description = description;
       this.parameters = '';

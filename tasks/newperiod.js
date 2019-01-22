@@ -22,7 +22,7 @@ class task extends Base_Task {
         });
 
         //get new custodians from chain
-        // let new_custodians = (await this.eos.getCustodians() ).map(c=> c.cust_name);
+        // let new_custodians = (await this.bot.eos.getCustodians() ).map(c=> c.cust_name);
         //map eos accountnames with discord userids
 
         //remove and add custodian role 

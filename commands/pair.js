@@ -1,5 +1,4 @@
 const {Base_Command} = require('../classes/abstract/Base_Command');
-///////
 const ecc = require('eosjs-ecc');
 
 class cmd extends Base_Command{

@@ -6,7 +6,7 @@ const BotApi = require("./classes/botapi.js");
 const eoswrapper = require('./classes/eoswrapper.js');
 
 
-class EosDacBot{
+class DacBot{
     
     constructor(config){
         this.config = config;
@@ -89,4 +89,4 @@ class EosDacBot{
     }
 }
 
-let test = new EosDacBot(config);
+let test = new DacBot(config);
