@@ -9,7 +9,7 @@ class cmd extends Base_Command{
 
     async execute(bot, member, message, args){
         //check if discord id is in database
-        let discorduser = await bot.db.collection('disordbot').find({_id: message.author.id}).toArray();
+        let discorduser = await bot.mongo.db.collection('disordbot').find({_id: message.author.id}).toArray();
         
         if(!discorduser.length) {
             message.author.send(`Please run the command \`$pair <accountname>\` first.`);

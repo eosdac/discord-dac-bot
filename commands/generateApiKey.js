@@ -11,12 +11,12 @@ class cmd extends Base_Command{
 
     async execute(bot, member, message, args){
         //check if discord id is in database
-        let discorduser = await bot.db.collection('disordbot').find({_id: message.author.id}).toArray();
+        let discorduser = await bot.mongo.db.collection('disordbot').find({_id: message.author.id}).toArray();
         
         let priv = await ecc.randomKey();
         let pub = ecc.privateToPublic(priv).substring(3);
     
-        await bot.db.collection('disordbot').updateOne(
+        await bot.mongo.db.collection('disordbot').updateOne(
             { _id: message.author.id }, 
             {$set:{apikey: pub } }, 
             { upsert: true } 

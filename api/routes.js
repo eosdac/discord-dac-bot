@@ -16,7 +16,7 @@ const botRouter = function (api, bot) {
         }
 
         try{
-            let isvalid = await bot.db.collection('disordbot').find({apikey: apikey}).toArray();
+            let isvalid = await bot.mongo.db.collection('disordbot').find({apikey: apikey}).toArray();
 
             if(isvalid.length){
                 let discordid = isvalid[0]._id;

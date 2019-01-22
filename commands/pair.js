@@ -10,12 +10,12 @@ class cmd extends Base_Command{
 
     async execute(bot, member, message, args){
         if(args[0]){
-            let account = await bot.getAccount(args[0]);
+            let account = await bot.eos.getAccount(args[0]);
             if(account){
                 let priv = await ecc.randomKey();
                 let pub = ecc.privateToPublic(priv).substring(3);
     
-                await bot.db.collection('disordbot').updateOne(
+                await bot.mongo.db.collection('disordbot').updateOne(
                     { _id: message.author.id }, 
                     {$set:{name: message.author.username, token: pub, eos_account:args[0] } }, 
                     { upsert: true } 

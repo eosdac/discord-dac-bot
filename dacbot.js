@@ -4,6 +4,7 @@ const Discord = require("discord.js");
 const MongoClient = require('mongodb').MongoClient;
 const BotApi = require("./classes/botapi.js");
 const eoswrapper = require('./classes/eoswrapper.js');
+const mongowrapper = require('./classes/mongowrapper.js');
 
 
 class DacBot{
@@ -17,19 +18,17 @@ class DacBot{
     }
 
     async init(){
+        await this.connectdb();
         this.loadEvents();
         this.loadCommands();
-        
-        if(!this.db){
-            this.db = await this.connectDb();
-        }
+        this.loadTasks();
 
-        this.client.login(this.config.bot.token);
+        await this.client.login(this.config.bot.token);
 
         if(this.config.bot.api.enable){
             this.botapi = new BotApi(this);
         }
-        this.loadTasks();
+        
     }
 
     loadCommands(){
@@ -75,17 +74,11 @@ class DacBot{
         return this.tasks.find(tsk => tsk.name == task_name);
     }
 
-    async connectDb(){
-        return await MongoClient.connect(this.config.mongo.url, { useNewUrlParser: true })
-        .then(mongo => {
-            console.log('mongo connected');
-            let db = mongo.db(this.config.mongo.dbname);
-            return db;
-        })
-        .catch(e => {
-            console.log(e); 
-            return false;
-        });
+    async connectdb(){
+        if(!this.mongo){
+            this.mongo = new mongowrapper(this.config.mongo.url, this.config.mongo.dbname);
+            await this.mongo.connect();
+        }
     }
 }
 
