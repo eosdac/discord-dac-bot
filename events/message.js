@@ -2,6 +2,8 @@ module.exports = async (bot, message) => {
     if(message.author.bot) return;
     if(message.content.indexOf(bot.config.bot.prefix) !== 0) return;
 
+    message.delete().catch(e=>{});
+    
     const guild = bot.client.guilds.find(guild => guild.name === bot.config.bot.guildname);
     const member = guild.members.get(message.author.id);
 
@@ -10,8 +12,7 @@ module.exports = async (bot, message) => {
     const cmd_obj = bot.getCommand(command);
 
     if(cmd_obj){
-        //todo: handle permissions here: if role then else
-        console.log('req roles', cmd_obj.required_roles);
+
         if(cmd_obj.required_roles.length === 0 || member.roles.some(r=>cmd_obj.required_roles.includes(r.name)) ) {
             // member has one of the required roles or no required roles set in the command
             bot.client.user.setActivity(`working for @${message.author.username}`);

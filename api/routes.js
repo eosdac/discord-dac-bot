@@ -20,8 +20,13 @@ const botRouter = function (api, bot) {
 
     api.get("/newperiod", async function (req, res) {
         const task = bot.getTask('newperiod');
-        await task.execute();
-        res.status(200).send('executed'); 
+        let f = await task.execute();
+        if(f){
+            res.status(200).send('success'); 
+        }
+        else{
+            res.status(200).send('error'); 
+        }
     });
 
     api.get("/testapi/:apikey", async function (req, res) {
@@ -49,7 +54,7 @@ const botRouter = function (api, bot) {
             res.status(400).send({ message: 'Something went wrong.' });
         }    
     });
-    
+
 }
 
 module.exports = botRouter;
