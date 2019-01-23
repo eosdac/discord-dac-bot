@@ -20,28 +20,35 @@ class task extends Base_Task {
             return false;
         }
 
-        let old_custodians = (await guild.roles.get(role.id).members).map(c =>c.id);
-        console.log(`Got ${old_custodians.length} members with that role.`);
-
-        //remove custodian roles
-        for (let i = 0; i < old_custodians.length; i++){
-            let m = await guild.members.get(old_custodians[i]);
-            await m.removeRole(role).catch(e=>console.error(e) );
-            await m.send(`A new period has started.`);
-        }
+        //old custodian roles from discord
+        let old_custodian_ids = (await guild.roles.get(role.id).members).map(c =>c.id);
 
         //get new custodians from chain
-        let new_custodians = (await this.bot.eos.getCustodians() ).map(c=> c.cust_name);
+        let new_custodian_eos_names = (await this.bot.eos.getCustodians() ).map(c=> c.cust_name);
+        let new_custodian_map = await this.bot.mongo.db.collection('disordbot').find({eos_account:{ $in: new_custodian_eos_names }} ).toArray();
+        let new_custodian_ids = new_custodian_map.map(ncm => ncm._id);
 
-        //map eos accountnames with discord userids
-        
-        let discord_cust = await this.bot.mongo.db.collection('disordbot').find({eos_account:{ $in: new_custodians }} ).toArray();
+        //remove custodian role when needed
+        for (let i = 0; i < old_custodian_ids.length; i++){
+            let m = await guild.members.get(old_custodian_ids[i]);
 
-        // add custodian roles
-        for (let i = 0; i < discord_cust.length; i++){
-            let m = await guild.members.get(discord_cust[i]._id);
-            await m.addRole(role).catch(e=>console.error(e) );
-            await m.send(`You've been elected for the current period. You received the Custodian role.`)
+            if(new_custodian_ids.includes(old_custodian_ids[i]) ){
+                await m.send(`You've been reelected as a Custodian for the next period.`);
+            }
+            else{
+                await m.removeRole(role).catch(e=>console.error(e) );
+                await m.send(`A new period has started. You are not reelected for the next period. The Custodian role is removed from your account.`);
+            }
+        }
+
+        // add custodian role when needed
+        for (let i = 0; i < new_custodian_ids.length; i++){
+            let m = await guild.members.get(new_custodian_ids[i]);
+
+            if(!old_custodian_ids.includes(new_custodian_ids[i]) ){
+                await m.addRole(role).catch(e=>console.error(e) );
+                await m.send(`Congratulations you've been elected for the current period. You received the Custodian role.`);
+            }
         }
 
     }
