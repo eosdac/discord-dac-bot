@@ -4,15 +4,14 @@ class cmd extends Base_Command{
 
     constructor(){
         super('verify', 'Verify if your discord account is properly linked with an eos account and check if you are a registered eosDAC member.');
-
     }
 
     async execute(bot, member, message, args){
         //check if discord id is in database
         let discorduser = await bot.mongo.db.collection('disordbot').find({_id: message.author.id}).toArray();
-        
+        // console.log(discorduser);
         if(!discorduser.length) {
-            message.author.send(`Please run the command \`$pair <accountname>\` first.`);
+            message.author.send(`Please run the command \`${bot.config.bot.prefix}pair <accountname>\` first.`);
             return;
         }
     
@@ -23,7 +22,7 @@ class cmd extends Base_Command{
         });
     
         if(!last) {
-            message.author.send(`I couldn't find your on chain verification message. Please run the command again or verify your token again ${bot.config.dac.memberclient}/test/${discorduser[0].token}`);
+            message.author.send(`I couldn't find your on chain verification message. Please run the command again or retry to verify your token ${bot.config.dac.memberclient}/test/${discorduser[0].token}`);
             return;
         }
     

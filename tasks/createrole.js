@@ -10,16 +10,17 @@ class task extends Base_Task {
 
     async execute(rolename, color='BLUE'){
         if(!rolename || !color){
-            console.log('Rolename and color required!');
+            console.log('Rolename and/or color required!');
             return false;
         }
-        let newrole = 'Registered Member';
+        let newrole = rolename;
 
         let guild = await this.bot.client.guilds.find(guild => guild.name === this.bot.config.bot.guildname);
         let role = await guild.roles.find(role => role.name === newrole);
+        
         if(role){
-            console.log('The role ${newrole} already exist in the guild');
-            return;
+            console.log(`The role ${newrole} already exist in the guild`);
+            return true;
         }
 
         guild.createRole({

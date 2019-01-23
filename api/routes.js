@@ -7,6 +7,25 @@ const botRouter = function (api, bot) {
             res.status(200).send(JSON.stringify(bot.config) );
     });
 
+    api.get("/createrole", async function (req, res) {
+        const task = bot.getTask('createrole');
+        // console.log(task);
+        let flag = task.execute('Custodian', '#C78C22');
+        if(flag){
+            res.status(200).send('created'); 
+        }
+        else{
+            res.status(200).send('not created'); 
+        }
+        
+    });
+
+    api.get("/newperiod", async function (req, res) {
+        const task = bot.getTask('newperiod');
+        await task.execute();
+        res.status(200).send('executed'); 
+    });
+
     api.get("/testapi/:apikey", async function (req, res) {
 
         const apikey = req.params.apikey;
