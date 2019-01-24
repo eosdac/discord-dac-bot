@@ -28,7 +28,7 @@ class cmd extends Base_Command{
                 return a.act.account === bot.config.dac.verification_contract; 
             });
             if(!last) {
-                message.author.send(`I couldn't find your on chain verification message. Please run the command again or retry to verify your token ${bot.config.dac.memberclient}/test/${discorduser[0].token}`);
+                message.author.send(`I couldn't find a verification message from eos account "${discorduser[0].eos_account}". Please run the command again or retry to verify your token ${bot.config.dac.memberclient}/test/${discorduser[0].token}`);
                 return;
             }
 
@@ -40,6 +40,8 @@ class cmd extends Base_Command{
             
             let balance = await bot.eos.getBalance(bot.config.dac.token.contract, discorduser[0].eos_account, bot.config.dac.token.symbol);
             let ismember = await bot.eos.isMember(discorduser[0].eos_account);
+            let guild = bot.client.guilds.find(guild => guild.name === bot.config.bot.guildname);
+            let role = guild.roles.find(role => role.name === "Registered Member");
 
             await bot.mongo.db.collection('disordbot').updateOne(
                 { _id: message.author.id }, 
@@ -54,9 +56,13 @@ class cmd extends Base_Command{
 
             if(ismember){
                 embed.addField('Agreed constitution', `v${ismember.agreedtermsversion}`);
+                member.addRole(role).catch(e=>console.error(e) );
+                embed.setDescription(`The "Registered Member" role is attached to your account ${message.author}`);
             }
             else{
+                member.removeRole(role).catch(e=>console.error(e) );
                 embed.addField('Signature required', `You need to agree the DAC constitution to be a member.`);
+                embed.setDescription(`Your accounts are successfully linked. You need to sign the constitution to receive the "Registered Member" role.`);
             }
 
             if(balance){
@@ -66,10 +72,7 @@ class cmd extends Base_Command{
                 embed.addField(`Balance required`, `You need to have at least 0.0001 ${bot.config.dac.token.symbol} to be an active member.`);
             }
 
-            let guild = bot.client.guilds.find(guild => guild.name === bot.config.bot.guildname);
-            let role = guild.roles.find(role => role.name === "Registered Member");
-            member.addRole(role).catch(e=>console.error(e) );
-            embed.setDescription(`The "Registered Member" role is attached to your account ${message.author}`)
+
             message.author.send(embed);
         }
         else{
