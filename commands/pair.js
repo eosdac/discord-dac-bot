@@ -17,7 +17,7 @@ class cmd extends Base_Command{
     
                 await bot.mongo.db.collection('disordbot').updateOne(
                     { _id: message.author.id }, 
-                    {$set:{name: message.author.username, token: pub, eos_account:args[0] } }, 
+                    {$set:{name: message.author.username, token: pub, eos_account:args[0], verified: false } }, 
                     { upsert: true } 
                 );
     
