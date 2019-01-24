@@ -100,6 +100,11 @@ class EosWrapper {
         }
     }
 
+    async isCustodian(accountname){
+        let custodians = (await this.getCustodians() ).map(c => c.cust_name);
+        return custodians.includes(accountname);
+    }
+
     async getCandidates(){
         let res =  await this.eos.rpc.get_table_rows({
             json: true,

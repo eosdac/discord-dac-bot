@@ -27,7 +27,7 @@ class task extends Base_Task {
 
             //get new custodians from chain
             let new_custodian_eos_names = (await this.bot.eos.getCustodians() ).map(c=> c.cust_name);
-            let new_custodian_map = await this.bot.mongo.db.collection('disordbot').find({eos_account:{ $in: new_custodian_eos_names }} ).toArray();
+            let new_custodian_map = await this.bot.mongo.db.collection('disordbot').find({eos_account:{ $in: new_custodian_eos_names }, verified: true} ).toArray();
             let new_custodian_ids = new_custodian_map.map(ncm => ncm._id);
 
             //remove custodian role when needed
