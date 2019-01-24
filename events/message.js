@@ -2,7 +2,9 @@ module.exports = async (bot, message) => {
     if(message.author.bot) return;
     if(message.content.indexOf(bot.config.bot.prefix) !== 0) return;
 
-    message.delete().catch(e=>{});
+    if(bot.config.bot.delete_cmd_msg){
+        message.delete().catch(e=>{});
+    }
     
     const guild = bot.client.guilds.find(guild => guild.name === bot.config.bot.guildname);
     const member = guild.members.get(message.author.id);
