@@ -12,7 +12,7 @@ class cmd extends Base_Command{
 
         if(args[0]){
             let account = await bot.eos.getAccount(args[0]);
-            console.log(account)
+            // console.log(account)
             if(account){
                 let discorduser = await bot.mongo.db.collection('disordbot').find({_id: message.author.id}).toArray();
                 let extra_msg ='';
