@@ -24,11 +24,15 @@ class cmd extends Base_Command{
         else{
 
             let actions = await bot.eos.getActions(discorduser[0].eos_account);
+            if(actions == 'error'){
+                message.author.send(`There is a problem with the eos node ${bot.config.chain.historyEndpoint}/v1/chain/get_info. Please try again later.`);
+                return;        
+            }
             let last = actions.find(a => { 
                 return a.act.account === bot.config.dac.verification_contract; 
             });
             if(!last) {
-                message.author.send(`I couldn't find a verification message from eos account "${discorduser[0].eos_account}". Please run the command again or retry to verify your token ${bot.config.dac.memberclient}/test/${discorduser[0].token}`);
+                message.author.send(`I couldn't find a verification message from eos account "${discorduser[0].eos_account}". Please run the command again or retry to verify your token ${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${discorduser[0].token}`);
                 return;
             }
 
@@ -63,6 +67,11 @@ class cmd extends Base_Command{
                 member.removeRole(role).catch(e=>console.error(e) );
                 embed.addField('Signature required', `You need to agree the DAC constitution to be a member.`);
                 embed.setDescription(`Your accounts are successfully linked. You need to sign the constitution to receive the "Registered Member" role.`);
+
+                //todo add cust role when needed)
+                if(await bot.eos.isCustodian(discorduser[0].eos_account) ){
+                    await member.addRole(await guild.roles.find(role => role.name === "Custodian")).catch(e=>console.error(e) );
+                }
             }
 
             if(balance){
@@ -76,7 +85,7 @@ class cmd extends Base_Command{
             message.author.send(embed);
         }
         else{
-            message.author.send(`Tokens don't match, verification failed. You need to verify your token ${bot.config.dac.memberclient}/test/${discorduser[0].token}`);
+            message.author.send(`Tokens don't match, verification failed. You need to verify your token ${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${discorduser[0].token}`);
         }
     }
 }

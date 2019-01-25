@@ -18,7 +18,8 @@ class EosWrapper {
         let actions = await axios.get(requestAddress)
         .then(data => {
             return data.data.actions;
-        }).catch(err => {console.log(err); return []; } );
+        }).catch(err => {console.log(err); return 'error'; } );
+
         return actions;
     }
 
