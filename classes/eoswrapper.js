@@ -133,6 +133,12 @@ class EosWrapper {
             return false;
         }
     }
+
+    //this doesn't belong here
+    async getMarketData(){
+        let market = await axios.get(config.dac.token.market_api).then(m =>m.data.market_data).catch(e=> false);
+        return market;
+    }
 }
 
 module.exports = EosWrapper;
