@@ -29,7 +29,7 @@ class cmd extends Base_Command{
             await Promise.all([
                 member.removeRole(role_rm).catch(e=>console.error(e) ), 
                 member.removeRole(role_cust).catch(e=>console.error(e) ),
-                bot.mongo.db.collection('disordbot').deleteOne({_id: message.author.id})
+                bot.mongo.db.collection('disordbot').deleteOne({_id: message.author.id} )
             ]);
             
             message.author.send(`You unpaired your eos account and deleted your details. Your Discord roles are adapted accordingly.`);

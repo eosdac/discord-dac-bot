@@ -23,14 +23,16 @@ class cmd extends Base_Command{
         }
         else{
 
-            let actions = await bot.eos.getActions(discorduser[0].eos_account);
+            let actions = await bot.eos.getActions2(discorduser[0].eos_account);
             if(actions == 'error'){
                 message.author.send(`There is a problem with the eos node ${bot.config.chain.historyEndpoint}/v1/chain/get_info. Please try again later.`);
                 return;        
             }
+
             let last = actions.find(a => { 
                 return a.act.account === bot.config.dac.verification_contract; 
             });
+
             if(!last) {
                 message.author.send(`I couldn't find a verification message from eos account "${discorduser[0].eos_account}". Please run the command again or retry to verify your token ${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${discorduser[0].token}`);
                 return;
@@ -41,11 +43,11 @@ class cmd extends Base_Command{
     
 
         if(isverified_flag ){
-            
             let balance = await bot.eos.getBalance(bot.config.dac.token.contract, discorduser[0].eos_account, bot.config.dac.token.symbol);
             let ismember = await bot.eos.isMember(discorduser[0].eos_account);
             let guild = bot.client.guilds.find(guild => guild.name === bot.config.bot.guildname);
             let role = guild.roles.find(role => role.name === "Registered Member");
+            let cust_role = guild.roles.find(role => role.name === "Custodian");
 
             await bot.mongo.db.collection('disordbot').updateOne(
                 { _id: message.author.id }, 
@@ -62,16 +64,17 @@ class cmd extends Base_Command{
                 embed.addField('Agreed constitution', `v${ismember.agreedtermsversion}`);
                 member.addRole(role).catch(e=>console.error(e) );
                 embed.setDescription(`The "Registered Member" role is attached to your account ${message.author}`);
+
+                if( await bot.eos.isCustodian(discorduser[0].eos_account) ){
+                    await member.addRole(cust_role);
+                }
             }
             else{
+                member.removeRole(cust_role).catch(e=>console.error(e) );
                 member.removeRole(role).catch(e=>console.error(e) );
                 embed.addField('Signature required', `You need to agree the DAC constitution to be a member.`);
                 embed.setDescription(`Your accounts are successfully linked. You need to sign the constitution to receive the "Registered Member" role.`);
 
-                //todo add cust role when needed)
-                if(await bot.eos.isCustodian(discorduser[0].eos_account) ){
-                    await member.addRole(await guild.roles.find(role => role.name === "Custodian")).catch(e=>console.error(e) );
-                }
             }
 
             if(balance){

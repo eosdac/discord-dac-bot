@@ -23,6 +23,17 @@ class EosWrapper {
         return actions;
     }
 
+    async getActions2(accountname){
+        let requestAddress = `${config.chain.historyEndpoint}/v1/history/get_actions`;
+        let actions = await axios.post(requestAddress, {account_name: accountname, pos: -1, offset:-100})
+        .then(data => {
+            return data.data.actions;
+        }).catch(err => {console.log(err); return 'error'; } );
+        actions = actions.map(a=>a.action_trace)
+        return actions.reverse();
+        
+    }
+
     async getAccount(accountname){
         return this.eos.rpc.get_account(accountname).then(x => x).catch(e => false);
     }
