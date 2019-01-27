@@ -15,6 +15,16 @@ class cmd extends Base_Command{
             // console.log(account)
             if(account){
                 let discorduser = await bot.mongo.db.collection('disordbot').find({_id: message.author.id}).toArray();
+                if(discorduser[0] && args[0] === discorduser[0].eos_account){
+                    if(discorduser[0].verified){
+                        message.author.send(`${args[0]} is already paired with your Discord account.`);
+                    }
+                    else{
+                        message.author.send(`You need to sign a message to verify your existing token. After signing the message you need to run the \`$verify\` command\n${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${discorduser[0].token}`);
+                    }
+                    
+                    return;
+                }
                 let extra_msg ='';
                 if(discorduser.length && discorduser[0].verified){
                     let guild = bot.client.guilds.find(guild => guild.name === bot.config.bot.guildname);

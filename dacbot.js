@@ -34,6 +34,7 @@ class DacBot{
         this.commands = [];
         let files = fs.readdirSync(this.config.bot.commands);
         files = files.filter(f => /\.js$/.test(f) );
+
         files.forEach(f => {
             const cmd_obj  = new (require(`${this.config.bot.commands}/${f}`) )();
             if(!cmd_obj.disable){

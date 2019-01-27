@@ -43,8 +43,11 @@ class cmd extends Base_Command{
     
 
         if(isverified_flag ){
-            let balance = await bot.eos.getBalance(bot.config.dac.token.contract, discorduser[0].eos_account, bot.config.dac.token.symbol);
-            let ismember = await bot.eos.isMember(discorduser[0].eos_account);
+            let [balance, ismember] = await Promise.all([
+                bot.eos.getBalance(bot.config.dac.token.contract, discorduser[0].eos_account, bot.config.dac.token.symbol),
+                bot.eos.isMember(discorduser[0].eos_account)
+            ]);
+
             let guild = bot.client.guilds.find(guild => guild.name === bot.config.bot.guildname);
             let role = guild.roles.find(role => role.name === "Registered Member");
             let cust_role = guild.roles.find(role => role.name === "Custodian");
@@ -83,7 +86,6 @@ class cmd extends Base_Command{
             else{
                 embed.addField(`Balance required`, `You need to have at least 0.0001 ${bot.config.dac.token.symbol} to be an active member.`);
             }
-
 
             message.author.send(embed);
         }

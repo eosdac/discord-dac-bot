@@ -5,7 +5,7 @@ class cmd extends Base_Command{
 
     constructor(){
         super('generate_api_key', 'Generate an api key to interact with the bot via http.');
-        this.required_roles = ['Registered Member'];
+        this.required_roles = ['Registered Member', "Custodian"];
 
     }
 
