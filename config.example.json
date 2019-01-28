@@ -37,45 +37,55 @@
         "priv": [
           {
             "name": "Registered Member",
-            "description": "This is the description of Registered Member role"
+            "description": "This is the description of Registered Member role",
+            "color": "#C78C22"
           },
           {
             "name": "Custodian",
-            "description": "This is the description of Custodian role"
+            "description": "This is the description of Custodian role",
+            "color": "#C78C22"
           }
         ],
         "pub": [
           {
             "name": "Block Production",
-            "description": "This is the description of Registered Member role"
+            "description": "This is the description of Registered Member role",
+            "color": "#C78C22"
           },
           {
             "name": "B2B",
-            "description": "This is the description of role"
+            "description": "This is the description of role",
+            "color": "#626136"
           },
           {
             "name": "Content Creation",
-            "description": "This is the description of role"
+            "description": "This is the description of role",
+            "color": "#C26136"
           },
           {
             "name": "Community Engagement",
-            "description": "This is the description of role"
+            "description": "This is the description of role",
+            "color": "#4CAD50"
           },
           {
             "name": "Development",
-            "description": "This is the description of role"
+            "description": "This is the description of role",
+            "color": "#4CAD00"
           },
           {
             "name": "Legal",
-            "description": "This is the description of role"
+            "description": "This is the description of role",
+            "color": "#C26D50"
           },
           {
             "name": "Operations",
-            "description": "This is the description of role"
+            "description": "This is the description of role",
+            "color": "#C26DA0"
           },
           {
             "name": "Translations",
-            "description": "This is the description of role"
+            "description": "This is the description of role",
+            "color": "#C06D50"
           }
 
         ]
