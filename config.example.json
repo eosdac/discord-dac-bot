@@ -1,11 +1,15 @@
 { 
     "bot": {
       "guildname": "eosdac bot test",
-      "token"  : "your bot token",
+      "token"  : "",
       "prefix" : "$",
+      "delete_cmd_msg": true,
       "commands" : "./commands",
       "events": "./events",
       "tasks": "./tasks",
+      "channels": {
+        "announcement" : "537728507661385758"
+      },
       "api": {
         "enable": true,
         "url": "http://localhost",
@@ -16,8 +20,8 @@
   
     "chain": {
       "chainId": "e70aaab8997e1dfce58fbfac80cbbb8fecec7b99cf982a9444273cbc64c41473",
-      "httpEndpoint": "http://junglehistory.cryptolions.io",
-      "historyEndpoint": "http://junglehistory.cryptolions.io"
+      "httpEndpoint": "http://jungle2.cryptolions.io",
+      "historyEndpoint": "https://junglehistory.cryptolions.io"
     },
   
     "mongo":{
@@ -28,9 +32,58 @@
     "dac":{
       "name": "eosDAC",
       "memberclient": "http://members-dev.eosdac.io",
+      "memberclient_verification_path": "/verify",
+      "roles":{
+        "priv": [
+          {
+            "name": "Registered Member",
+            "description": "This is the description of Registered Member role"
+          },
+          {
+            "name": "Custodian",
+            "description": "This is the description of Custodian role"
+          }
+        ],
+        "pub": [
+          {
+            "name": "Block Production",
+            "description": "This is the description of Registered Member role"
+          },
+          {
+            "name": "B2B",
+            "description": "This is the description of role"
+          },
+          {
+            "name": "Content Creation",
+            "description": "This is the description of role"
+          },
+          {
+            "name": "Community Engagement",
+            "description": "This is the description of role"
+          },
+          {
+            "name": "Development",
+            "description": "This is the description of role"
+          },
+          {
+            "name": "Legal",
+            "description": "This is the description of role"
+          },
+          {
+            "name": "Operations",
+            "description": "This is the description of role"
+          },
+          {
+            "name": "Translations",
+            "description": "This is the description of role"
+          }
+
+        ]
+      },
       "token":{
         "symbol": "KASDAC",
-        "contract": "kasdactokens"
+        "contract": "kasdactokens",
+        "market_api": "https://api.coingecko.com/api/v3/coins/eosdac?localization=false"
       },
   
       "custodian": {
