@@ -8,7 +8,7 @@ class task extends Base_Task {
         this.bot = bot;
     }
 
-    async execute(rolename, color='BLUE'){
+    async execute(rolename, color='#9BB9EE'){
         if(!rolename || !color){
             console.log('Rolename and/or color required!');
             return false;
@@ -19,21 +19,31 @@ class task extends Base_Task {
         let role = await guild.roles.find(role => role.name === newrole);
         
         if(role){
-            console.log(`The role ${newrole} already exist in the guild`);
-            return true;
+  
+            if(role.hexColor.toLowerCase() !== color.toLowerCase()){
+                let oldc = role.hexColor.toLowerCase();
+                await role.edit({color: color}).catch(e => {
+                    console.log(e);
+                });
+                return `color changed from ${oldc} to ${color.toLowerCase()}`;
+            }
+            else{
+                return 'already exists';
+            }
+            
         }
 
-        guild.createRole({
+        return guild.createRole({
             name: newrole,
             color: color,
         })
         .then(role => {
             console.log(`Created new role with name ${role.name} and color ${role.color}`);
-            return true;
+            return 'created';
         })
         .catch(e=>{
             console.error(e);
-            return false;
+            return 'error';
         });
     }
 }

@@ -6,16 +6,16 @@ const botRouter = function (api, bot) {
             res.status(200).send(JSON.stringify(bot.config) );
     });
 
-    api.get("/createrole", async function (req, res) {
+
+
+    api.get("/createroles", async function (req, res) {
         const task = bot.getTask('createrole');
-        // console.log(task);
-        let flag = task.execute('Custodian', '#C78C22');
-        if(flag){
-            res.status(200).send('created'); 
+        const roles = bot.config.dac.roles.pub;
+
+        for(let i = 0; i < roles.length; i++){
+            roles[i]['result'] = await task.execute(roles[i].name, roles[i].color);
         }
-        else{
-            res.status(200).send('not created'); 
-        }
+        res.status(200).send(roles); 
     });
 
     api.get("/newperiod", async function (req, res) {
