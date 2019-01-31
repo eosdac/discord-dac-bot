@@ -34,7 +34,7 @@ class cmd extends Base_Command{
             });
 
             if(!last) {
-                message.author.send(`I couldn't find a verification message from eos account "${discorduser[0].eos_account}". Please run the command again or retry to verify your token ${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${discorduser[0].token}`);
+                message.author.send(`I couldn't find a verification message from eos account "${discorduser[0].eos_account}". Please run the command again or retry to verify your token ${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${discorduser[0].token}:${discorduser[0].eos_account}`);
                 return;
             }
 
@@ -90,7 +90,7 @@ class cmd extends Base_Command{
             message.author.send(embed);
         }
         else{
-            message.author.send(`Tokens don't match, verification failed. You need to verify your token ${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${discorduser[0].token}`);
+            message.author.send(`Tokens don't match, verification failed. You need to verify your token ${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${discorduser[0].token}:${discorduser[0].eos_account}`);
         }
     }
 }

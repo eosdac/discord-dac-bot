@@ -20,7 +20,7 @@ class cmd extends Base_Command{
                         message.author.send(`${args[0]} is already paired with your Discord account.`);
                     }
                     else{
-                        message.author.send(`You need to sign a message to verify your existing token. After signing the message you need to run the \`$verify\` command\n${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${discorduser[0].token}`);
+                        message.author.send(`You need to sign a message to verify your existing token. After signing the message you need to run the \`$verify\` command\n${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${discorduser[0].token}:${discorduser[0].eos_account}`);
                     }
                     
                     return;
@@ -42,7 +42,7 @@ class cmd extends Base_Command{
                     { upsert: true } 
                 );
     
-                let pairlink = `${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${pub}`;
+                let pairlink = `${bot.config.dac.memberclient}${bot.config.dac.memberclient_verification_path}/${pub}:${args[0]}`;
     
                 message.author.send(`${extra_msg}Visit the link below to pair eos account "${args[0]}" with ${message.author} \n ${pairlink}`);
             }
