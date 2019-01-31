@@ -37,55 +37,55 @@
         "priv": [
           {
             "name": "Registered Member",
-            "description": "This is the description of Registered Member role",
-            "color": "#C78C22"
+            "description": "Registered members can participate in DAC governance via voting for custodians and enjoy all eosDAC Member benefits",
+            "color": "#3390D6"
           },
           {
             "name": "Custodian",
-            "description": "This is the description of Custodian role",
-            "color": "#C78C22"
+            "description": "Custodians are community elected guardians of the DAC",
+            "color": "#9B59B6"
           }
         ],
         "pub": [
           {
             "name": "Block Production",
-            "description": "This is the description of Registered Member role",
-            "color": "#C78C22"
+            "description": "Block Production role holders discuss block production activities and look after eosDAC block production on EOS and EOS sidechains",
+            "color": "#BB080B"
           },
           {
             "name": "B2B",
-            "description": "This is the description of role",
-            "color": "#626136"
+            "description": "Everything Business related, for example, exchange communication, partnerships, collaboration are handled by members wearing B2B role",
+            "color": "#0F6BB4"
           },
           {
             "name": "Content Creation",
-            "description": "This is the description of role",
-            "color": "#C26136"
+            "description": "Can create Content? Get this role and start contributing",
+            "color": "#2ECC71"
           },
           {
             "name": "Community Engagement",
-            "description": "This is the description of role",
-            "color": "#4CAD50"
+            "description": "Community Engagement role holders are the watchers, influencers of community who work together to keep the community engaged",
+            "color": "#FDF41C"
           },
           {
             "name": "Development",
-            "description": "This is the description of role",
-            "color": "#4CAD00"
+            "description": "Development role is for the members who like to build and break the code by contributing to the development of eosDAC tools",
+            "color": "#E91E63"
           },
           {
             "name": "Legal",
-            "description": "This is the description of role",
-            "color": "#C26D50"
+            "description": "Members that want to participate in the Legal aspects of the DAC, for instance Governance, Constitution etc",
+            "color": "#95A5A6"
           },
           {
             "name": "Operations",
-            "description": "This is the description of role",
-            "color": "#C26DA0"
+            "description": "DAC members that are committed to build and suggest efficient systems and tools to help the DAC accomplish great things.",
+            "color": "#07E2EC"
           },
           {
             "name": "Translations",
-            "description": "This is the description of role",
-            "color": "#C06D50"
+            "description": "Members with the Translations role help in translating post, websites content, some times things can also get very technical",
+            "color": "#9CC210"
           }
 
         ]
