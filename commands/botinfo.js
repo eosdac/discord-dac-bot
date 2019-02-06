@@ -13,7 +13,7 @@ class help extends Base_Command{
         embed.addField(`Guild`, `${bot.config.bot.guildname}`);
         embed.addField(`Broadcast Channel`, `${bot.config.bot.channels.announcement}`);
         embed.addField(`Network`, `${bot.config.chain.name} \n*${bot.config.chain.chainId}*`);
-        embed.addField(`Eos Nodes`, `main: ${bot.config.chain.httpEndpoint}, history: ${bot.config.chain.historyEndpoint}`);
+        embed.addField(`Eos Nodes`, `main: ${bot.config.chain.httpEndpoint}v1/chain/_info, history: ${bot.config.chain.historyEndpoint}v1/chain/_info`);
         embed.addField(`HTTP Api`, `${bot.config.bot.api.enable?'enabled':'disabled'}`);
 
         message.author.send(embed);
