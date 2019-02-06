@@ -36,7 +36,7 @@ class DacBot{
         files = files.filter(f => /\.js$/.test(f) );
 
         files.forEach(f => {
-            const cmd_obj  = new (require(`${this.config.bot.commands}/${f}`) )();
+            const cmd_obj  = new (require(`${this.config.bot.commands}/${f}`) )(this);
             if(!cmd_obj.disable){
                 this.commands.push(cmd_obj);
             }

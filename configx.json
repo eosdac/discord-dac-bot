@@ -1,7 +1,7 @@
 { 
     "bot": {
       "guildname": "eosdac bot test",
-      "token"  : "",
+      "token"  : "NTMzNTc1NDc1MjE0NDE3OTIw.DxtDzQ.iYMJigduTzwE75fNibatpiIfzSA",
       "prefix" : "$",
       "delete_cmd_msg": true,
       "commands" : "./commands",
@@ -19,6 +19,7 @@
     },
   
     "chain": {
+      "name": "jungle",
       "chainId": "e70aaab8997e1dfce58fbfac80cbbb8fecec7b99cf982a9444273cbc64c41473",
       "httpEndpoint": "http://jungle2.cryptolions.io",
       "historyEndpoint": "https://junglehistory.cryptolions.io"

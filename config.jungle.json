@@ -1,0 +1,106 @@
+{ 
+    "bot": {
+      "guildname": "eosdac bot test",
+      "token"  : "",
+      "prefix" : "$",
+      "delete_cmd_msg": true,
+      "commands" : "./commands",
+      "events": "./events",
+      "tasks": "./tasks",
+      "channels": {
+        "announcement" : "537728507661385758"
+      },
+      "api": {
+        "enable": true,
+        "url": "http://localhost",
+        "port": 3333,
+        "enable_cors": true
+      }
+    },
+  
+    "chain": {
+      "name": "jungle",
+      "chainId": "e70aaab8997e1dfce58fbfac80cbbb8fecec7b99cf982a9444273cbc64c41473",
+      "httpEndpoint": "http://jungle2.cryptolions.io",
+      "historyEndpoint": "https://junglehistory.cryptolions.io"
+    },
+  
+    "mongo":{
+      "url": "mongodb://localhost:27017/",
+      "dbname": "eosdac"
+    },
+  
+    "dac":{
+      "name": "eosDAC",
+      "memberclient": "http://members-dev.eosdac.io",
+      "memberclient_verification_path": "/verify",
+      "roles":{
+        "priv": [
+          {
+            "name": "Registered Member",
+            "description": "Registered members can participate in DAC governance via voting for custodians and enjoy all eosDAC Member benefits",
+            "color": "#3390D6"
+          },
+          {
+            "name": "Custodian",
+            "description": "Custodians are community elected guardians of the DAC",
+            "color": "#9B59B6"
+          }
+        ],
+        "pub": [
+          {
+            "name": "Block Production",
+            "description": "Block Production role holders discuss block production activities and look after eosDAC block production on EOS and EOS sidechains",
+            "color": "#BB080B"
+          },
+          {
+            "name": "B2B",
+            "description": "Everything Business related, for example, exchange communication, partnerships, collaboration are handled by members wearing B2B role",
+            "color": "#0F6BB4"
+          },
+          {
+            "name": "Content Creation",
+            "description": "Can create Content? Get this role and start contributing",
+            "color": "#2ECC71"
+          },
+          {
+            "name": "Community Engagement",
+            "description": "Community Engagement role holders are the watchers, influencers of community who work together to keep the community engaged",
+            "color": "#FDF41C"
+          },
+          {
+            "name": "Development",
+            "description": "Development role is for the members who like to build and break the code by contributing to the development of eosDAC tools",
+            "color": "#E91E63"
+          },
+          {
+            "name": "Legal",
+            "description": "Members that want to participate in the Legal aspects of the DAC, for instance Governance, Constitution etc",
+            "color": "#95A5A6"
+          },
+          {
+            "name": "Operations",
+            "description": "DAC members that are committed to build and suggest efficient systems and tools to help the DAC accomplish great things.",
+            "color": "#07E2EC"
+          },
+          {
+            "name": "Translations",
+            "description": "Members with the Translations role help in translating post, websites content, some times things can also get very technical",
+            "color": "#9CC210"
+          }
+
+        ]
+      },
+      "token":{
+        "symbol": "KASDAC",
+        "contract": "kasdactokens",
+        "market_api": "https://api.coingecko.com/api/v3/coins/eosdac?localization=false"
+      },
+  
+      "custodian": {
+        "contract": "dacelections"
+      },
+
+      "verification_contract": "piecesnbitss"
+    }
+  }
