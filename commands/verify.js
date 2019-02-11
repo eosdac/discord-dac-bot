@@ -48,6 +48,8 @@ class cmd extends Base_Command{
                 bot.eos.isMember(discorduser[0].eos_account)
             ]);
 
+            console.log(balance, ismember)
+
             let guild = bot.client.guilds.find(guild => guild.name === bot.config.bot.guildname);
             let role = guild.roles.find(role => role.name === "Registered Member");
             let cust_role = guild.roles.find(role => role.name === "Custodian");
@@ -65,11 +67,11 @@ class cmd extends Base_Command{
 
             if(ismember){
                 embed.addField('Agreed constitution', `v${ismember.agreedtermsversion}`);
-                member.addRole(role).catch(e=>console.error(e) );
+                member.addRole(role).catch(e=>console.log('add reg member role error', e) );
                 embed.setDescription(`The "Registered Member" role is attached to your account ${message.author}`);
 
                 if( await bot.eos.isCustodian(discorduser[0].eos_account) ){
-                    await member.addRole(cust_role);
+                    await member.addRole(cust_role).catch(e=>console.log('error cust role error', e) );
                 }
             }
             else{
@@ -80,7 +82,7 @@ class cmd extends Base_Command{
 
             }
 
-            if(balance){
+            if(balance && balance.length){
                 embed.addField('Balance', `${balance}`);
             }
             else{
