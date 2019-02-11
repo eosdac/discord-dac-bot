@@ -50,7 +50,7 @@ class EosWrapper {
             lower_bound: accountname,
             table: 'members',
             limit: 1
-        }).catch(e=> false);
+        }).catch(e=> {console.log(e); return false});
 
         if(res && res.rows[0].sender === accountname){
             return res.rows[0];
