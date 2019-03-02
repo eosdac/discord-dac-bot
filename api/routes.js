@@ -18,15 +18,38 @@ const botRouter = function (api, bot) {
         res.status(200).send(roles); 
     });
 
-    api.get("/newperiod", async function (req, res) {
-        const task = bot.getTask('newperiod');
-        let f = await task.execute();
-        if(f){
-            res.status(200).send('success'); 
+    api.get("/newperiod/:apikey", async function (req, res) {
+        const apikey = req.params.apikey;
+        if(!apikey){
+            res.status(400).send({ message: 'No api key supplied.' });
+            return;
         }
-        else{
-            res.status(200).send('error'); 
+
+        try{
+            let isvalid = await bot.mongo.db.collection('disordbot').find({apikey: apikey}).toArray();
+
+            if(isvalid.length){
+                let discordid = isvalid[0]._id;
+                const task = bot.getTask('newperiod');
+                let f = await task.execute();
+                if(f){
+                    res.status(200).send('successfully called new period');
+                    await bot.client.users.get(discordid).send(`Your have called new period with api key \`${apikey}\``);
+                }
+                else{
+                    res.status(200).send('error');
+                }
+            }
+            else{
+                res.status(200).send('The api key is not valid' );
+            }
         }
+        catch(e){
+            console.log(e);
+            res.status(400).send({ message: 'Something went wrong.' });
+        } 
+
+
     });
 
     api.get("/testapi/:apikey", async function (req, res) {
