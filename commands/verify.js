@@ -69,11 +69,15 @@ class cmd extends Base_Command{
                 embed.addField('Agreed constitution', `v${ismember.agreedtermsversion}`);
                 member.addRole(role).catch(e=>console.log('add reg member role error', e) );
                 embed.setDescription(`The "Registered Member" role is attached to your account ${message.author}`);
-
-                if( await bot.eos.isCustodian(discorduser[0].eos_account) ){
+                
+                let test = await bot.eos.isCustodian(discorduser[0].eos_account);
+                console.log(discorduser[0].eos_account, test);
+                if( test ){
+                    console.log('add cust role')
                     await member.addRole(cust_role).catch(e=>console.log('error cust role error', e) );
                 }
                 else{
+                    console.log('remove cust role')
                     await member.removeRole(cust_role).catch(e=>console.error(e) );
                 }
             }
