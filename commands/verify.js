@@ -72,6 +72,7 @@ class cmd extends Base_Command{
                 
                 let test = await bot.eos.isCustodian(discorduser[0].eos_account);
                 console.log(discorduser[0].eos_account, test);
+                
                 if( test ){
                     console.log('add cust role')
                     await member.addRole(cust_role).catch(e=>console.log('error cust role error', e) );
