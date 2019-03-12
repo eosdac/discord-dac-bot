@@ -73,6 +73,9 @@ class cmd extends Base_Command{
                 if( await bot.eos.isCustodian(discorduser[0].eos_account) ){
                     await member.addRole(cust_role).catch(e=>console.log('error cust role error', e) );
                 }
+                else{
+                    await member.removeRole(cust_role).catch(e=>console.error(e) );
+                }
             }
             else{
                 member.removeRole(cust_role).catch(e=>console.error(e) );
