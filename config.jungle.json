@@ -31,6 +31,7 @@
     },
   
     "dac":{
+      "dac_id": "eos.dac",
       "name": "eosDAC",
       "memberclient": "http://members-dev.eosdac.io",
       "memberclient_verification_path": "/verify",

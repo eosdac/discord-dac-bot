@@ -46,7 +46,7 @@ class EosWrapper {
         let res =  await this.eos.rpc.get_table_rows({
             json: true,
             code: config.dac.token.contract,
-            scope: config.dac.token.contract,
+            scope: config.dac.dac_id,
             lower_bound: accountname,
             table: 'members',
             limit: 1
@@ -81,7 +81,7 @@ class EosWrapper {
         let res =  await this.eos.rpc.get_table_rows({
             json: true,
             code: config.dac.custodian.contract,
-            scope: config.dac.custodian.contract,
+            scope: config.dac.dac_id,
             lower_bound: accountname,
             table: 'votes',
             limit: 1
@@ -99,7 +99,7 @@ class EosWrapper {
         let res =  await this.eos.rpc.get_table_rows({
             json: true,
             code: config.dac.custodian.contract,
-            scope: config.dac.custodian.contract,
+            scope: config.dac.dac_id,
             table: 'custodians',
             limit: 12
         }).catch(e=> false);
@@ -121,7 +121,7 @@ class EosWrapper {
         let res =  await this.eos.rpc.get_table_rows({
             json: true,
             code: config.dac.custodian.contract,
-            scope: config.dac.custodian.contract,
+            scope: config.dac.dac_id,
             table: 'candidates',
             limit: -1
         }).catch(e=> false);
