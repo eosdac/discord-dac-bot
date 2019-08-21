@@ -52,7 +52,7 @@ class EosWrapper {
             limit: 1
         }).catch(e=> {console.log(e); return false});
 
-        if(res && res.rows[0].sender === accountname){
+        if(res && res.rows.length && res.rows[0].sender === accountname){
             return res.rows[0];
         }
         else{
