@@ -2,6 +2,7 @@ const config = require("./config.json");
 const fs = require('fs');
 const Discord = require("discord.js");
 const BotApi = require("./classes/botapi.js");
+const BotWSListener = require("./classes/botwslistener");
 const eoswrapper = require('./classes/eoswrapper.js');
 const mongowrapper = require('./classes/mongowrapper.js');
 
@@ -26,6 +27,9 @@ class DacBot{
 
         if(this.config.bot.api.enable){
             this.botapi = new BotApi(this);
+        }
+        if(this.config.bot.ws.enable){
+            this.botws = new BotWSListener(this);
         }
         
     }

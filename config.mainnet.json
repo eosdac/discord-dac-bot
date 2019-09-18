@@ -8,13 +8,18 @@
       "events": "./events",
       "tasks": "./tasks",
       "channels": {
-        "announcement" : "537728507661385758"
+        "announcement" : "537728507661385758",
+        "custodian" : "441722428675194890"
       },
       "api": {
         "enable": true,
         "url": "http://localhost",
         "port": 3333,
         "enable_cors": true
+      },
+      "ws": {
+        "enable": true,
+        "endpoint": "wss://api.eosdac.io"
       }
     },
   
@@ -101,6 +106,8 @@
         "contract": "daccustodian"
       },
 
-      "verification_contract": "eosdacthebot"
+      "verification_contract": "eosdacthebot",
+
+      "dac_api": "https://api.eosdac.io/v1/eosdac"
     }
   }

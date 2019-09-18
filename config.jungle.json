@@ -8,13 +8,18 @@
       "events": "./events",
       "tasks": "./tasks",
       "channels": {
-        "announcement" : "537728507661385758"
+        "announcement" : "537728507661385758",
+        "custodian" : "437556042864394251"
       },
       "api": {
         "enable": true,
         "url": "http://localhost",
         "port": 3333,
         "enable_cors": true
+      },
+      "ws": {
+        "enable": true,
+        "endpoint": "ws://54.36.164.203:3030"
       }
     },
   
@@ -101,6 +106,8 @@
         "contract": "dacelections"
       },
 
-      "verification_contract": "piecesnbitss"
+      "verification_contract": "piecesnbitss",
+
+      "dac_api": "https://api-jungle.eosdac.io/v1/eosdac"
     }
   }
