@@ -23,7 +23,7 @@ class BotWSListener{
         };
         ws.onopen = () => {
             console.log(`websocket opened with index ${my_ws_index}`);
-            ws.send(JSON.stringify({type:'register', data:{dac_id:'eos.dac'}}));
+            ws.send(JSON.stringify({type:'register', data:{dac_id:bot.config.dac.dac_id}}));
         };
     }
 }
