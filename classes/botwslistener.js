@@ -17,7 +17,8 @@ class BotWSListener{
                     await task.execute(msg_obj.data);
                 }
                 else if (msg_obj.data.notify === 'NEW_PERIOD'){
-                    // TODO
+                    const task = this.bot.getTask('newperiod');
+                    await task.execute();
                 }
             }
         };
